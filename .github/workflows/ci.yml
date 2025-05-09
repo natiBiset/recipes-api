@@ -36,6 +36,16 @@ jobs:
         run: |
           poetry run coverage run -m pytest --junit-xml=pytest.xml
           poetry run coverage xml -o coverage.xml
+      - name: Review agent
+        continue-on-error: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          
 
       - name: Publish coverage results
         if: always()
