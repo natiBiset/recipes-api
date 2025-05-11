@@ -11,7 +11,7 @@ from llama_index.llms.openai import OpenAI
 # dotenv.load_dotenv()
 
 llm = OpenAI(
-    model=os.getenv("OPENAI_MODEL"),
+    model=os.getenv("OPENAI_MODEL",'gpt-4o-mini'),
     api_key=os.getenv("OPENAI_API_KEY"),
     api_base=os.getenv("OPENAI_BASE_URL"),
 )
